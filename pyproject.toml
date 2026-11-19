@@ -1,0 +1,57 @@
+[project]
+name = "arxiv-ai-mcp"
+version = "0.1.0"
+description = "Token-efficient MCP server for searching, analyzing, and curating AI research from arXiv"
+readme = "README.md"
+authors = [
+    { name = "juan", email = "rodsebastian@gmail.com" },
+]
+license = { text = "MIT" }
+requires-python = ">=3.12"
+keywords = ["mcp", "arxiv", "llm", "agents", "ai-research"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "httpx>=0.27.0",
+    "mcp[cli]>=2.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/jsrv/arxiv-ai-mcp"
+Issues = "https://github.com/jsrv/arxiv-ai-mcp/issues"
+
+[project.scripts]
+arxiv-ai-mcp = "arxiv_ai_mcp.server:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.2.0",
+    "ruff>=0.17.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
